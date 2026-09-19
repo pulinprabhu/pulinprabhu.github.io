@@ -2,26 +2,26 @@
 <html lang="en">
 
 <head>
-    <title>TEDxSPIT | Breakthrough</title>
+    <title>TEDxSPIT | Past Events</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <meta name="keywords" content="TED, TEDx, TEDxSPIT, TEDx Sardar Patel Institute of Technology, TEDx Mumbai, SPIT, SPIT Mumbai, SPIT Maharashtra, Breakthrough">
-    <meta name="description" content="TED;TEDx;Mumbai;TEDxSPIT is back again with it’s all new theme, “Breakthrough”. Get inspired, Meet people, Share thoughts and go beyond the conversation in order to shape an extravagant story that you might want to tell people.">
+    <meta name="keywords" content="TED, TEDx, TEDxSPIT, TEDx Sardar Patel Institute of Technology, TEDx Mumbai, SPIT, SPIT Mumbai, past events, archive, Unmasking Creativity, Breakthrough, Illuminate Excellence, Rebuild Creativity">
+    <meta name="description" content="TEDxSPIT past events archive: speakers, teams and talks from every edition of TEDx at Sardar Patel Institute of Technology, Mumbai.">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="TEDxSPIT | Breakthrough">
-    <meta property="og:title" content="TEDxSPIT | Breakthrough">
-    <meta property="og:description" content="TEDxSPIT is back again with it’s all new theme, “Breakthrough”. This time get inspired, meet people, share thoughts, receive amazing goodies, witness something as extraordinary as this event, and go beyond the conversation in order to shape an extravagant story that you might want to tell people.">
+    <meta property="og:site_name" content="TEDxSPIT | Past Events">
+    <meta property="og:title" content="TEDxSPIT | Past Events">
+    <meta property="og:description" content="TEDxSPIT past events archive: speakers, teams and talks from every edition of TEDx at Sardar Patel Institute of Technology, Mumbai.">
     <meta property="og:url" content="http://www.tedxspit.com/">
     <meta property="og:image" content="../img/logo/TEDxSPITnavbar_ogtag.html">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@TEDxSPIT">
-    <meta name="twitter:title" content="TEDxSPIT | Breakthrough">
+    <meta name="twitter:title" content="TEDxSPIT | Past Events">
     <!-- <meta name="google-site-verification" content="SH76h3yra3-TmgkbsbzJMx074Wv1pfqOphKPPFLhqG0" /> -->
-    <meta name="twitter:description" content="TEDxSPIT is back again with it’s all new theme, “Breakthrough”. This time get inspired, meet people, share thoughts, receive amazing goodies, witness something as extraordinary as this event, and go beyond the conversation in order to shape an extravagant story that you might want to tell people.">
+    <meta name="twitter:description" content="TEDxSPIT past events archive: speakers, teams and talks from every edition of TEDx at Sardar Patel Institute of Technology, Mumbai.">
     <meta name="twitter:image" content="http://www.TEDxSPIT.com/img/logo/TEDxSPITnavbar_ogtag.png">
 
     <link href="media/favicon.ico" rel="icon" type="image/x-icon" />
@@ -29,46 +29,35 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./scripts/fontawesome-free-5.12.0-web/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./scripts/css/landing.css">
-    <link rel="stylesheet" href="./scripts/css/index.css">
+    <link rel="stylesheet" href="./scripts/css/landing.css?v=16">
+    <link rel="stylesheet" href="./scripts/css/index.css?v=21">
 
     <style>
         .container_about_us {
             position: absolute;
-            height: 800px;
-            width: 1000px;
-            top: 60px;
-            left: calc(50% - 450px);
+            top: 140px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(1200px, 92vw);
             display: flex;
-            padding-top: 20px;
+            gap: 24px;
         }
 
         .card_about_us {
             display: flex;
-            height: 550px;
-            width: 400px;
+            flex: 1 1 0;
+            min-width: 0;
+            height: min(600px, calc(100vh - 200px));
             background-color: #17141d;
             border-radius: 10px;
-            box-shadow: -1rem 0 3rem #000;
-            /*   margin-left: -50px; */
-            transition: 0.4s ease-out;
+            box-shadow: 0 1rem 3rem #000;
+            transition: transform 0.4s ease-out;
             position: relative;
-            left: 0px;
-        }
-
-        .card_about_us:not(:first-child) {
-                margin-left: -50px;
+            overflow: hidden;
         }
 
         .card_about_us:hover {
-            transform: translateY(-20px);
-            transition: 0.4s ease-out;
-        }
-
-        .card_about_us:hover ~ .card_about_us {
-            position: relative;
-            left: 50px;
-            transition: 0.4s ease-out;
+            transform: translateY(-12px);
         }
 
         .title_about_us {
@@ -105,13 +94,27 @@
         }
 
         .card_about_us:hover .filledbar_about_us {
-            width: 320px;
+            width: 100%;
             transition: 0.4s ease-out;
         }
 
         .circle {
             position: absolute;
-            top: 150px;
+            top: 130px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+        }
+
+        .card_about_us .theme-expl {
+            width: auto !important;
+            height: auto !important;
+            margin: 0 !important;
+            padding: 0 24px 24px !important;
+            font-size: clamp(13px, 1.2vw, 15px);
+            line-height: 1.6;
+            text-align: left;
         }
 
         .stroke {
@@ -130,91 +133,165 @@
             stroke-dashoffset: 100;
             transition: 0.6s ease-out;
         }
+
+        @media only screen and (max-width: 1024px) {
+            .container_about_us {
+                top: 12vh;
+                width: 100%;
+                left: 0;
+                transform: none;
+                padding: 0 5vw;
+                box-sizing: border-box;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+            }
+
+            .card_about_us {
+                flex: 0 0 min(88vw, 420px);
+                height: 70vh;
+                scroll-snap-align: center;
+            }
+
+            .card_about_us .theme-expl {
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
 
 <body>
     <!-- LANDING PAGE PART STARTS -->
-    <div class="landing-container">
-        <div class="layer-four"></div>
-        <!-- <div class="layer-three" style="width: auto; height: auto; top: 0; padding-top: 325px;">
-            <img src="./media/landing/layer3.png" alt="" style="width: 1550px; height: auto;">
+    <div class="landing-container" id="landing">
+        <div class="sky"></div>
+        <div class="sun-band"></div>
+        <div class="city-near"></div>
+
+        <div class="road">
+            <div class="road-kerb"></div>
+            <div class="traffic" id="traffic">
+                <span class="veh v-bus"  style="--dur:19s;--delay:-3s;--scale:1"><svg viewBox="0 0 132 74" aria-hidden="true"><use href="#veh-bus"/></svg></span>
+                <span class="veh v-auto" style="--dur:15s;--delay:-9s;--scale:.78"><svg viewBox="0 0 78 60" aria-hidden="true"><use href="#veh-auto"/></svg></span>
+                <span class="veh v-taxi" style="--dur:12s;--delay:-6s;--scale:.9"><svg viewBox="0 0 104 48" aria-hidden="true"><use href="#veh-taxi"/></svg></span>
+                <span class="veh v-taxi2 back" style="--dur:17s;--delay:-13s;--scale:.72"><svg viewBox="0 0 104 48" aria-hidden="true"><use href="#veh-taxi"/></svg></span>
+                <span class="veh v-auto2 back" style="--dur:21s;--delay:-17s;--scale:.62"><svg viewBox="0 0 78 60" aria-hidden="true"><use href="#veh-auto"/></svg></span>
+            </div>
         </div>
-        <div class="layer-two" style="width: auto; height: auto; top: 0; padding-top: 350px;">
-            <img src="./media/landing/layer2.png" alt="" style="width: 1550px; height: auto;">
-        </div> -->
-        <div class="building">
-            <img src="./media/landing/landing_page.png" alt="" style="width: 1550px; height: auto; top: 0; padding-top: 170px;">
-        </div>
+
         <div class="landing-content">
             <div class="landing-content-placer">
-                <div class="landing-logo"></div>
                 <div class="landing-event-logo"></div>
-                <div class="landing-countdown" style="top: 35%;">xx Days To Go!</div>
-                <div class="landing-social-handles" style="top: 40%;">
+                <p class="landing-kicker">Sardar Patel Institute of Technology &middot; Mumbai</p>
+                <div class="landing-rule"></div>
+                <p class="landing-theme">Every edition so far</p>
+                <div class="landing-social-handles">
                     <ul>
                         <li id="landing-facebook">
-                            <a href="https://www.facebook.com/TEDxSPIT/" style="color: #3B5998;">
+                            <a href="https://www.facebook.com/TEDxSPIT/" aria-label="TEDxSPIT on Facebook">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                         </li>
                         <li id="landing-linkedin">
-                            <a href="https://www.linkedin.com/company/tedx-spit/" style="color: #00ACED;">
+                            <a href="https://www.linkedin.com/company/tedx-spit/" aria-label="TEDxSPIT on LinkedIn">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
                         </li>
                         <li id="landing-insta">
-                            <a href="https://www.instagram.com/tedxspit/" style="color: #E4405F;">
+                            <a href="https://www.instagram.com/tedxspit/" aria-label="TEDxSPIT on Instagram">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         </li>
                     </ul>
                 </div>
-                <button class="landing-next-btn">
-                    <a href="#" class="landing-next-btn-link">
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                </button>
             </div>
         </div>
+
+        <button class="landing-next-btn" id="enter-btn" type="button">
+            <span class="landing-next-btn-link" aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+            <span class="landing-next-label">Enter the archive</span>
+        </button>
     </div>
-    <!-- <script src="./scripts/js/landing.js"></script> -->
+
+    <svg class="veh-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="glassLit" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#FFE0A8"/><stop offset="1" stop-color="#F0A02A"/>
+            </linearGradient>
+        </defs>
+
+        <!-- BEST double-decker -->
+        <symbol id="veh-bus" viewBox="0 0 132 74">
+            <rect x="4" y="8" width="122" height="54" rx="7" fill="#7E1A12"/>
+            <rect x="4" y="8" width="122" height="54" rx="7" fill="none" stroke="#3A0C08" stroke-width="2"/>
+            <rect x="10" y="13" width="108" height="15" rx="3" fill="url(#glassLit)" opacity=".92"/>
+            <rect x="10" y="36" width="92" height="15" rx="3" fill="url(#glassLit)" opacity=".86"/>
+            <rect x="106" y="34" width="14" height="19" rx="3" fill="#FFE0A8" opacity=".95"/>
+            <g stroke="#3A0C08" stroke-width="1.6" opacity=".85">
+                <path d="M32 13v15M54 13v15M76 13v15M98 13v15M30 36v15M52 36v15M74 36v15"/>
+            </g>
+            <rect x="8" y="30" width="116" height="4" fill="#E62B1E"/>
+            <rect x="46" y="1.5" width="40" height="7" rx="2.5" fill="#E62B1E" stroke="#3A0C08" stroke-width="1.4"/>
+            <circle cx="122" cy="44" r="3.4" fill="#FFD9A0"/>
+            <circle cx="9" cy="46" r="2.6" fill="#E62B1E"/>
+            <rect x="4" y="60" width="122" height="5" rx="2" fill="#2A0906"/>
+            <g fill="#141017" stroke="#3A0C08" stroke-width="1.4">
+                <circle cx="30" cy="65" r="8"/><circle cx="102" cy="65" r="8"/>
+            </g>
+            <g fill="#4A3A38"><circle cx="30" cy="65" r="3"/><circle cx="102" cy="65" r="3"/></g>
+        </symbol>
+
+        <!-- auto rickshaw -->
+        <symbol id="veh-auto" viewBox="0 0 78 60">
+            <path d="M14 46V27C14 14 25 6 39 6s25 8 25 21v19Z" fill="#F0A02A"/>
+            <path d="M14 46V27C14 14 25 6 39 6s25 8 25 21v19" fill="none" stroke="#221610" stroke-width="2.4"/>
+            <path d="M18 44V29c0-10 9-17 21-17s21 7 21 17v15Z" fill="#1A1418" opacity=".55"/>
+            <path d="M44 42V26c0-6 4-10 9-10s9 4 9 12v14Z" fill="url(#glassLit)" opacity=".8"/>
+            <rect x="12" y="42" width="54" height="9" rx="3.5" fill="#15100F" stroke="#221610" stroke-width="2"/>
+            <path d="M24 42V30c0-5 4-8 8-8h3v20Z" fill="#2A2026"/>
+            <circle cx="63" cy="36" r="3.2" fill="#FFD9A0"/>
+            <circle cx="14" cy="38" r="2.4" fill="#E62B1E"/>
+            <g fill="#141017" stroke="#221610" stroke-width="1.6">
+                <circle cx="22" cy="51" r="7.5"/><circle cx="60" cy="51" r="7.5"/>
+            </g>
+            <g fill="#4A3A38"><circle cx="22" cy="51" r="2.8"/><circle cx="60" cy="51" r="2.8"/></g>
+        </symbol>
+
+        <!-- kaali-peeli taxi -->
+        <symbol id="veh-taxi" viewBox="0 0 104 48">
+            <path d="M22 20l9-11h42l10 11Z" fill="#F0A02A" stroke="#221610" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M33 11h17v9H26Z" fill="url(#glassLit)" opacity=".85"/>
+            <path d="M54 11h17l7 9H54Z" fill="url(#glassLit)" opacity=".7"/>
+            <rect x="42" y="2" width="18" height="6" rx="2" fill="#F0A02A" stroke="#221610" stroke-width="1.4"/>
+            <path d="M8 34V25c0-3 3-5 8-6l6-1h60l10 4c5 1 8 3 8 6v6Z" fill="#15100F" stroke="#221610" stroke-width="2" stroke-linejoin="round"/>
+            <rect x="14" y="26" width="78" height="3" fill="#F0A02A" opacity=".55"/>
+            <circle cx="96" cy="28" r="3.2" fill="#FFD9A0"/>
+            <circle cx="10" cy="28" r="2.4" fill="#E62B1E"/>
+            <g fill="#141017" stroke="#221610" stroke-width="1.6">
+                <circle cx="26" cy="36" r="8"/><circle cx="80" cy="36" r="8"/>
+            </g>
+            <g fill="#4A3A38"><circle cx="26" cy="36" r="3"/><circle cx="80" cy="36" r="3"/></g>
+        </symbol>
+    </svg>
     <!-- LANDING PAGE PART ENDS -->
 
     <nav class="navbar" style="height: 13vh;">
         <div class="logo">
             <img src="media/tedx_white.png" alt="TEDx SPIT" style="height: auto;">
         </div>
-        <div class="timer">
-            <p id="demo"> </p>
-        </div>
-        </div>
-        <div class="get-tickets">
-            <figure class="book-btn">
-                <a href="https://www.townscript.com/e/tedxspit" class="btn-link">
-                    <div class="btn-data">
-                        <span class="btn-text">Book Tickets</span>
-                        <span class="btn-text"><strong>NOW</strong></span>
-                    </div>
-                </a>
-            </figure>
-        </div>
     </nav>
 
     <div class="container">
         <div class="banner">
             <div class="theme-name-div">
-                <h1 class="theme-name" style="width: 55%; height: auto;">
-                    <img src="./media/BREAKTHROUGH.png" alt="Breakthrough">
-                </h1>
+                <h1 class="theme-name">Every edition, in one place</h1>
             </div>
             <div class="theme-expl-div">
                 <p class="theme-expl">
-                    “Ever tried. Ever failed. No matter. Try again. Fail again. Fail better.” - Samuel Beckett.<br/>
-                    When life poses an obstacle, a setback, challenges them, they did not have failure as an option. 
-                    They tried. They persevered. They came through. This is the ultimate breakthrough. This is 
-                    TEDxSPIT 2020. Join us in honing stories of the successful, but who have seen the flip side as 
-                    well, at this year’s edition of TEDxSPIT.
+                    Four editions of TEDxSPIT at the Sardar Patel Institute of Technology, Mumbai:
+                    <strong>Rebuild Creativity</strong> in 2018, <strong>Illuminate Excellence</strong> in 2019,
+                    <strong>Breakthrough</strong> in 2020 and <strong>Unmasking Creativity</strong> in 2023.
+                    Twenty-four talks are collected here, alongside the speakers who gave them &mdash; actors and
+                    animators, a para-swimmer, a rapper, a casting director, a COVID-19 physician &mdash; and the
+                    student team that put the events together.
                 </p>
             </div>
         </div>
@@ -222,10 +299,107 @@
         <div class="sections">
             <div class="content">
 
+                <!-- 2023 UNMASKING CREATIVITY ARCHIVE SECTION -->
+                <div class="section" id="archives_2023">
+                    <div class="heading">
+                        <h3 class="heading-text">2023 - Unmasking Creativity</h3>
+                    </div>
+                    <div class="real-content">
+                        <div class="left-arrow" id="left-arrow-arc-2023">
+                            <div class="left-button">
+                                <span class="line" id="left-top"></span>
+                                <span class="line" id="left-bottom"></span>
+                            </div>
+                        </div>
+                        <div class="cards" id="card-archive-2023">
+                            <div class="first-card" data-video="4Sm6ComDLyI">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/4Sm6ComDLyI/hqdefault.jpg" alt="Angry Prash — Unmasking Creativity">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Angry Prash</h2>
+                                        <h4>Unmasking Creativity</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card" data-video="ShIq0-CgP6M">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/ShIq0-CgP6M/hqdefault.jpg" alt="Sushant Pujari — Life in Rhythm">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Sushant Pujari</h2>
+                                        <h4>Life in Rhythm</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card" data-video="Bw45a25iJLQ">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/Bw45a25iJLQ/hqdefault.jpg" alt="Jhanvi Bhatia — Empowering Self-Acceptance">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Jhanvi Bhatia</h2>
+                                        <h4>Empowering Self-Acceptance</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="last-card" data-video="yXM-hzLN7Zo">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/yXM-hzLN7Zo/hqdefault.jpg" alt="Sai Godbole — Harmonizing Life's Melodies">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Sai Godbole</h2>
+                                        <h4>Harmonizing Life's Melodies</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right-arrow" id="right-arrow-arc-2023">
+                            <div class="right-button">
+                                <span class="line" id="right-top"></span>
+                                <span class="line" id="right-bottom"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="view-more" type="button" data-cards="card-archive-2023" data-label="View all 4 talks" aria-expanded="false">
+                        <span class="view-more-label">View all 4 talks</span>
+                        <span class="view-more-chev" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+                    <div class="archive-info" id="archives-info-2023">
+                        <div class="archive-video">
+                            <iframe src="" title="TEDxSPIT 2023 talk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="archive-bio" hidden>
+                            <h3 class="archive-bio-name"></h3>
+                            <p class="archive-bio-talk"></p>
+                            <p class="archive-bio-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 2023 UNMASKING CREATIVITY ARCHIVE SECTION END -->
+
                 <!-- SPEAKER SECTION-->
                 <div class="section" id="speakers">
                     <div class="heading">
-                        <h2 class="heading-text">Our Speakers</h3>
+                        <h2 class="heading-text">2020 - Breakthrough</h2>
                     </div>
                     <div class="real-content">
                         <div class="left-arrow" id="left-arrow-sp">
@@ -235,11 +409,11 @@
                             </div>
                         </div>
                         <div class="cards" id="card-speakers">
-                            <div onmouseover="shiftScaleUp(1, 'speakers')" onmouseout="shiftScaleDown(1, 'speakers')" class="first-card" id="speaker-one 1">
+                            <div onmouseover="shiftScaleUp(1, 'speakers')" onmouseout="shiftScaleDown(1, 'speakers')" class="first-card" id="speaker-one 1" data-video="g4yvSWDRAyw">
                                 <div class="card-bg-img">
                                     <img src="./media/speakers/Anjali_Barot.png" alt="Error XD">
                                 </div>
-                                <div class="card-details" onclick="generate(1, 'speakers')">
+                                <div class="card-details">
                                     <div class="card-title">
                                         <h2>Anjali Barot</h2>
                                         <h4>Actor</h4>
@@ -250,11 +424,11 @@
                                 </div>
                             </div>
 
-                            <div onmouseover="shiftScaleUp(2, 'speakers')" onmouseout="shiftScaleDown(2, 'speakers')" class="card" id="speaker-two 2">
+                            <div onmouseover="shiftScaleUp(2, 'speakers')" onmouseout="shiftScaleDown(2, 'speakers')" class="card" id="speaker-two 2" data-video="pGiQojktyqE">
                                 <div class="card-bg-img">
                                     <img src="./media/speakers/Tushar_Mahajan.png" alt="Error XD">
                                 </div>
-                                <div class="card-details" onclick="generate(2, 'speakers')">
+                                <div class="card-details">
                                     <div class="card-title">
                                         <h2>Tushar Mahajan</h2>
                                         <h4>Photographer & DOP</h4>
@@ -269,7 +443,7 @@
                                 <div class="card-bg-img">
                                     <img src="./media/speakers/Pratik_Gandhi.png" alt="Error XD">
                                 </div>
-                                <div class="card-details" onclick="generate(3, 'speakers')">
+                                <div class="card-details">
                                     <div class="card-title">
                                         <h2>Pratik Gandhi</h2>
                                         <h4>Actor</h4>
@@ -280,11 +454,11 @@
                                 </div>
                             </div>
 
-                            <div onmouseover="shiftScaleUp(4, 'speakers')" onmouseout="shiftScaleDown(4, 'speakers')" class="card" id="speaker-four 4">
+                            <div onmouseover="shiftScaleUp(4, 'speakers')" onmouseout="shiftScaleDown(4, 'speakers')" class="card" id="speaker-four 4" data-video="s3WHz8FART0">
                                 <div class="card-bg-img">
                                     <img src="./media/speakers/Rudraksh_Jaiswal.png" alt="Error XD">
                                 </div>
-                                <div class="card-details" onclick="generate(4, 'speakers')">
+                                <div class="card-details">
                                     <div class="card-title">
                                         <h2>Rudhraksh Jaiswal</h2>
                                         <h4>Actor</h4>
@@ -295,11 +469,11 @@
                                 </div>
                             </div>
 
-                            <div onmouseover="shiftScaleUp(5, 'speakers')" onmouseout="shiftScaleDown(5, 'speakers')" class="card" id="speaker-five 5">
+                            <div onmouseover="shiftScaleUp(5, 'speakers')" onmouseout="shiftScaleDown(5, 'speakers')" class="card" id="speaker-five 5" data-video="3oJtB0-86sg">
                                 <div class="card-bg-img">
                                     <img src="./media/speakers/Shams_Alam.png" alt="Error XD">
                                 </div>
-                                <div class="card-details" onclick="generate(5, 'speakers')">
+                                <div class="card-details">
                                     <div class="card-title">
                                         <h2>Shams Alam</h2>
                                         <h4>Indian Para Swimmer</h4>
@@ -314,7 +488,7 @@
                                 <div class="card-bg-img">
                                     <img src="./media/speakers/Dilip_Pawar.png" alt="Error XD">
                                 </div>
-                                <div class="card-details" onclick="generate(6, 'speakers')">
+                                <div class="card-details">
                                     <div class="card-title">
                                         <h2>Dr. Dilip Pawar</h2>
                                         <h4>Covid-19 Task Force Doctor</h4>
@@ -329,7 +503,7 @@
                                 <div class="card-bg-img">
                                     <img src="./media/speakers/imtiaz.png" alt="Error XD">
                                 </div>
-                                <div class="card-details" onclick="generate(6, 'speakers')">
+                                <div class="card-details">
                                     <div class="card-title">
                                         <h2>Imtiaz Qureshi</h2>
                                         <h4>Padma Shri, Master Chef at ITC.</h4>
@@ -344,7 +518,7 @@
                                 <div class="card-bg-img">
                                     <img src="./media/speakers/piyush.png" alt="Error XD">
                                 </div>
-                                <div class="card-details" onclick="generate(7, 'speakers')">
+                                <div class="card-details">
                                     <div class="card-title">
                                         <h2>Piyush Bhisekar</h2>
                                         <h4>Poet, Singer-Songwriter</h4>
@@ -359,7 +533,7 @@
                                 <div class="card-bg-img">
                                     <img src="./media/speakers/major_shah.png" alt="Error XD">
                                 </div>
-                                <div class="card-details" onclick="generate(8, 'speakers')">
+                                <div class="card-details">
                                     <div class="card-title">
                                         <h2>Major Mohammad Ali Shah</h2>
                                         <h4>Indian Theater Personality, Actor and Former Soldier</h4>
@@ -374,7 +548,7 @@
                                 <div class="card-bg-img">
                                     <img src="./media/speakers/ramesh.png" alt="Error XD">
                                 </div>
-                                <div class="card-details" onclick="generate(9, 'speakers')">
+                                <div class="card-details">
                                     <div class="card-title">
                                         <h2>Ramesh Kumar Soni</h2>
                                         <h4>Co-Founder and Director at VayuJal Technologies Private Limited</h4>
@@ -390,6 +564,23 @@
                                 <span class="line" id="right-top"></span>
                                 <span class="line" id="right-bottom"></span>
                             </div>
+                        </div>
+                    </div>
+                    <button class="view-more" type="button" data-cards="card-speakers" data-label="View all 6 speakers" aria-expanded="false">
+                        <span class="view-more-label">View all 6 speakers</span>
+                        <span class="view-more-chev" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+
+                    <div class="archive-info" id="speakers-talk">
+                        <div class="archive-video">
+                            <iframe src="" title="TEDxSPIT 2020 talk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <img class="archive-portrait" src="" alt="" hidden>
+                        <div class="archive-bio" hidden>
+                            <h3 class="archive-bio-name"></h3>
+                            <p class="archive-bio-talk"></p>
+                            <p class="archive-bio-text"></p>
+                            <ul class="archive-bio-social"></ul>
                         </div>
                     </div>
 
@@ -427,10 +618,423 @@
                 </div>
                 <!-- SPEAKERS SECTION END -->
 
+
+                <!-- SPONSORS SECTION-->
+                <!-- <div class="section" id="sponsors">
+                    <div class="heading">
+                        <h3 class="heading-text">Our Partners</h3>
+                    </div>
+                    <div class="real-content">
+                        <div class="left-arrow" id="left-arrow-spo">
+                            <div class="left-button">
+                                <span class="line" id="left-top"></span>
+                                <span class="line" id="left-bottom"></span>
+                            </div>
+                        </div>
+                        <div class="cards" id="card-sponsors">
+                            <div onmouseover="shiftScaleUp(1, 'sponsors')" onmouseout="shiftScaleDown(1, 'sponsors')" class="card" id="speaker-one">
+                                <div class="card-bg-img">
+                                    <img src="./media/sponsors/Portronics.png" alt="Error XD">
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(2, 'sponsors')" onmouseout="shiftScaleDown(2, 'sponsors')" class="card" id="speaker-two">
+                                <div class="card-bg-img">
+                                    <img src="./media/sponsors/FABLABS.png" alt="Error XD">
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(3, 'sponsors')" onmouseout="shiftScaleDown(3, 'sponsors')" class="card" id="speaker-three">
+                                <div class="card-bg-img">
+                                    <img src="./media/sponsors/NOIZZY BOX.png" alt="Error XD">
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(4, 'sponsors')" onmouseout="shiftScaleDown(4, 'sponsors')" class="card" id="speaker-four">
+                                <div class="card-bg-img">
+                                    <img src="./media/sponsors/PIXERIZE.png" alt="Error XD">
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(5, 'sponsors')" onmouseout="shiftScaleDown(5, 'sponsors')" class="card" id="speaker-five">
+                                <div class="card-bg-img">
+                                    <img src="./media/sponsors/EAT CONFETTI.png" alt="Error XD">
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(6, 'sponsors')" onmouseout="shiftScaleDown(6, 'sponsors')" class="card" id="speaker-six">
+                                <div class="card-bg-img">
+                                    <img src="./media/sponsors/Nestle.png" alt="Error XD">
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(7, 'sponsors')" onmouseout="shiftScaleDown(7, 'sponsors')" class="card" id="speaker-seven">
+                                <div class="card-bg-img">
+                                    <img src="./media/sponsors/Gatikwe.png" alt="Error XD">
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(8, 'sponsors')" onmouseout="shiftScaleDown(8, 'sponsors')" class="card" id="speaker-eight">
+                                <div class="card-bg-img">
+                                    <img src="./media/sponsors/BISLERI.png" alt="Error XD">
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(9, 'sponsors')" onmouseout="shiftScaleDown(9, 'sponsors')" class="card" id="speaker-nine">
+                                <div class="card-bg-img">
+                                    <img src="./media/sponsors/HIDDEN HOUR.png" alt="Error XD">
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(10, 'sponsors')" onmouseout="shiftScaleDown(10, 'sponsors')" class="card" id="speaker-ten">
+                                <div class="card-bg-img">
+                                    <img src="./media/sponsors/SANITIZER.png" alt="Error XD">
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(11, 'sponsors')" onmouseout="shiftScaleDown(11, 'sponsors')" class="card" id="speaker-eleven">
+                                <div class="card-bg-img">
+                                    <img src="./media/sponsors/DOPOLOGY.png" alt="Error XD">
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(12, 'sponsors')" onmouseout="shiftScaleDown(12, 'sponsors')" class="last-card" id="speaker-ten">
+                                <div class="card-bg-img">
+                                    <img src="./media/sponsors/Anaganaga.png" alt="Error XD">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right-arrow" id="right-arrow-spo">
+                            <div class="right-button">
+                                <span class="line" id="right-top"></span>
+                                <span class="line" id="right-bottom"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> -->
+                <!-- SPONSORS SECTION END -->
+
+                <!-- 2019 ARCHIVE SECTION -->
+                <div class="section" id="archives">
+                    <div class="heading">
+                        <h3 class="heading-text">2019 - Illuminate Excellence</h3>
+                    </div>
+                    <div class="real-content">
+                        <div class="left-arrow" id="left-arrow-arc">
+                            <div class="left-button">
+                                <span class="line" id="left-top"></span>
+                                <span class="line" id="left-bottom"></span>
+                            </div>
+                        </div>
+                        <div class="cards" id="card-archive">
+                            <div onmouseover="shiftScaleUp(1, 'archive')" onmouseout="shiftScaleDown(1, 'archive')" class="first-card" id="speaker-one" data-video="le6eNngljto">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/le6eNngljto/hqdefault.jpg" alt="Error XD">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Ayush Mehra</h2>
+                                        <h4>Enjoy the Journey</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div onmouseover="shiftScaleUp(2, 'archive')" onmouseout="shiftScaleDown(2, 'archive')" class="card" id="speaker-six" data-video="lGJoaVHYifU">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/lGJoaVHYifU/hqdefault.jpg" alt="Error XD">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Kaam Bhari</h2>
+                                        <h4>Living Life One Verse at a Time</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(3, 'archive')" onmouseout="shiftScaleDown(3, 'archive')" class="card" id="speaker-eight" data-video="aWCDFi2tZiY">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/aWCDFi2tZiY/hqdefault.jpg" alt="Error XD">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Sumeet Vyas</h2>
+                                        <h4>Find Your Fuel</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(4, 'archive')" onmouseout="shiftScaleDown(4, 'archive')" class="card" id="speaker-two" data-video="zX-6UFQuiXk">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/zX-6UFQuiXk/hqdefault.jpg" alt="Error XD">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Eisha Chopra</h2>
+                                        <h4>The Power of an Audience to Change Society</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(5, 'archive')" onmouseout="shiftScaleDown(5, 'archive')" class="card" id="speaker-three" data-video="eEknyfpLdLI">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/eEknyfpLdLI/hqdefault.jpg" alt="Error XD">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Kavish Sinha</h2>
+                                        <h4>Passion, What?</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(6, 'archive')" onmouseout="shiftScaleDown(6, 'archive')" class="card" id="speaker-four" data-video="xrXHYaUUNGU">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/xrXHYaUUNGU/hqdefault.jpg" alt="Error XD">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Ameya Kanawade</h2>
+                                        <h4>Fumbling My Way to Fluency, How I got over My Stutter</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(7, 'archive')" onmouseout="shiftScaleDown(7, 'archive')" class="card" id="speaker-seven" data-video="f8ppJS210RA">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/f8ppJS210RA/hqdefault.jpg" alt="Error XD">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Aakshaye Rathi</h2>
+                                        <h4>The Impact of OTT Platforms on Cinema</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(8, 'archive')" onmouseout="shiftScaleDown(8, 'archive')" class="last-card" id="speaker-five" data-video="wwZKOmoNxMo">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/wwZKOmoNxMo/hqdefault.jpg" alt="Error XD">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Ali Mustafa Shaikh</h2>
+                                        <h4>Crowd-sourcing Data for Machine Learning</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right-arrow" id="right-arrow-arc">
+                            <div class="right-button">
+                                <span class="line" id="right-top"></span>
+                                <span class="line" id="right-bottom"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="view-more" type="button" data-cards="card-archive" data-label="View all 8 talks" aria-expanded="false">
+                        <span class="view-more-label">View all 8 talks</span>
+                        <span class="view-more-chev" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+
+                    <div class="archive-info" id="archives-info">
+                        <div class="archive-video">
+                            <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="archive-bio" hidden>
+                            <h3 class="archive-bio-name"></h3>
+                            <p class="archive-bio-talk"></p>
+                            <p class="archive-bio-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- ARCHIVE SECTION END -->
+
+                <!-- 2018 ARCHIVE SECTION -->
+                <div class="section" id="archives_2018">
+                    <div class="heading">
+                        <h3 class="heading-text">2018 - Rebuild Creativity</h3>
+                    </div>
+                    <div class="real-content">
+                        <div class="left-arrow" id="left-arrow-arc">
+                            <div class="left-button">
+                                <span class="line" id="left-top"></span>
+                                <span class="line" id="left-bottom"></span>
+                            </div>
+                        </div>
+                        <div class="cards" id="card-archive-2018">
+                            <div onmouseover="shiftScaleUp(1, 'archive_2018')" onmouseout="shiftScaleDown(1, 'archive_2018')" class="first-card" id="speaker-one" data-video="xjfVrWyU5oM">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/xjfVrWyU5oM/hqdefault.jpg" alt="Error XD">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Vikas Gupta</h2>
+                                        <h4>Finding Yourself</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div onmouseover="shiftScaleUp(2, 'archive_2018')" onmouseout="shiftScaleDown(2, 'archive_2018')" class="card" id="speaker-six" data-video="-eXikXK9SZ8">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/-eXikXK9SZ8/hqdefault.jpg" alt="Error XD">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Manish Advani</h2>
+                                        <h4>The Art of Story Telling</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(3, 'archive_2018')" onmouseout="shiftScaleDown(3, 'archive_2018')" class="card" id="speaker-eight" data-video="6YVMYI2qMFI">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/6YVMYI2qMFI/hqdefault.jpg" alt="Error XD">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Nidhika Bahl</h2>
+                                        <h4>The Art of Creating Meaningful and Everlasting Relationships</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(4, 'archive_2018')" onmouseout="shiftScaleDown(4, 'archive_2018')" class="card" id="speaker-two" data-video="3GLsR29QHAU">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/3GLsR29QHAU/hqdefault.jpg" alt="Error XD">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Rashi Mal</h2>
+                                        <h4>Choose the Life You Want to Live</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(5, 'archive_2018')" onmouseout="shiftScaleDown(5, 'archive_2018')" class="card" id="speaker-three" data-video="5FP0oqRUfHY">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/5FP0oqRUfHY/hqdefault.jpg" alt="Error XD">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Swapan Rajdev</h2>
+                                        <h4>The Age of Artificial Intelligence</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(6, 'archive_2018')" onmouseout="shiftScaleDown(6, 'archive_2018')" class="card" id="speaker-four" data-video="7gT5gO107nE">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/7gT5gO107nE/hqdefault.jpg" alt="Error XD">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Mohsin Memon</h2>
+                                        <h4>Games can solve real problems</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(7, 'archive_2018')" onmouseout="shiftScaleDown(7, 'archive_2018')" class="card" id="speaker-seven" data-video="f5kLOBzF34g">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/f5kLOBzF34g/hqdefault.jpg" alt="Error XD">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Max Fernandes</h2>
+                                        <h4>Exploring the School of Art</h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div onmouseover="shiftScaleUp(8, 'archive_2018')" onmouseout="shiftScaleDown(8, 'archive_2018')" class="last-card" id="speaker-five" data-video="qQ836w2kWf8">
+                                <div class="card-bg-img">
+                                    <img src="https://img.youtube.com/vi/qQ836w2kWf8/hqdefault.jpg" alt="Error XD">
+                                </div>
+                                <div class="card-details">
+                                    <div class="card-title">
+                                        <h2>Robin Chaurasia</h2>
+                                        <h4>Social Change/h4>
+                                    </div>
+                                    <div class="card-arrow">
+                                        <h2>▶️</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right-arrow" id="right-arrow-arc">
+                            <div class="right-button">
+                                <span class="line" id="right-top"></span>
+                                <span class="line" id="right-bottom"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="view-more" type="button" data-cards="card-archive-2018" data-label="View all 8 talks" aria-expanded="false">
+                        <span class="view-more-label">View all 8 talks</span>
+                        <span class="view-more-chev" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+
+                    <div class="archive-info" id="archives-info-2018">
+                        <div class="archive-video">
+                            <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="archive-bio" hidden>
+                            <h3 class="archive-bio-name"></h3>
+                            <p class="archive-bio-talk"></p>
+                            <p class="archive-bio-text"></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- END 2018 ARCHIVE SECTION -->
+
                 <!-- EXECUTIVES SECTION-->
                 <div class="section" id="executives">
                     <div class="heading">
-                        <h3 class="heading-text">This is Us</h3>
+                        <h3 class="heading-text">The Team</h3>
                     </div>
 
                     <div class="real-content">
@@ -674,6 +1278,10 @@
                             </div>
                         </div>
                     </div>
+                    <button class="view-more" type="button" data-cards="card-executives" data-label="View all 15 members" aria-expanded="false">
+                        <span class="view-more-label">View all 15 members</span>
+                        <span class="view-more-chev" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                    </button>
 
                     <div class="people-info" id="executives-info">
                         <div class="info">
@@ -702,406 +1310,12 @@
                 </div>
                 <!-- EXECUTIVES SECTION END -->
 
-                <!-- SPONSORS SECTION-->
-                <!-- <div class="section" id="sponsors">
-                    <div class="heading">
-                        <h3 class="heading-text">Our Partners</h3>
-                    </div>
-                    <div class="real-content">
-                        <div class="left-arrow" id="left-arrow-spo">
-                            <div class="left-button">
-                                <span class="line" id="left-top"></span>
-                                <span class="line" id="left-bottom"></span>
-                            </div>
-                        </div>
-                        <div class="cards" id="card-sponsors">
-                            <div onmouseover="shiftScaleUp(1, 'sponsors')" onmouseout="shiftScaleDown(1, 'sponsors')" class="card" id="speaker-one">
-                                <div class="card-bg-img">
-                                    <img src="./media/sponsors/Portronics.png" alt="Error XD">
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(2, 'sponsors')" onmouseout="shiftScaleDown(2, 'sponsors')" class="card" id="speaker-two">
-                                <div class="card-bg-img">
-                                    <img src="./media/sponsors/FABLABS.png" alt="Error XD">
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(3, 'sponsors')" onmouseout="shiftScaleDown(3, 'sponsors')" class="card" id="speaker-three">
-                                <div class="card-bg-img">
-                                    <img src="./media/sponsors/NOIZZY BOX.png" alt="Error XD">
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(4, 'sponsors')" onmouseout="shiftScaleDown(4, 'sponsors')" class="card" id="speaker-four">
-                                <div class="card-bg-img">
-                                    <img src="./media/sponsors/PIXERIZE.png" alt="Error XD">
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(5, 'sponsors')" onmouseout="shiftScaleDown(5, 'sponsors')" class="card" id="speaker-five">
-                                <div class="card-bg-img">
-                                    <img src="./media/sponsors/EAT CONFETTI.png" alt="Error XD">
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(6, 'sponsors')" onmouseout="shiftScaleDown(6, 'sponsors')" class="card" id="speaker-six">
-                                <div class="card-bg-img">
-                                    <img src="./media/sponsors/Nestle.png" alt="Error XD">
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(7, 'sponsors')" onmouseout="shiftScaleDown(7, 'sponsors')" class="card" id="speaker-seven">
-                                <div class="card-bg-img">
-                                    <img src="./media/sponsors/Gatikwe.png" alt="Error XD">
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(8, 'sponsors')" onmouseout="shiftScaleDown(8, 'sponsors')" class="card" id="speaker-eight">
-                                <div class="card-bg-img">
-                                    <img src="./media/sponsors/BISLERI.png" alt="Error XD">
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(9, 'sponsors')" onmouseout="shiftScaleDown(9, 'sponsors')" class="card" id="speaker-nine">
-                                <div class="card-bg-img">
-                                    <img src="./media/sponsors/HIDDEN HOUR.png" alt="Error XD">
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(10, 'sponsors')" onmouseout="shiftScaleDown(10, 'sponsors')" class="card" id="speaker-ten">
-                                <div class="card-bg-img">
-                                    <img src="./media/sponsors/SANITIZER.png" alt="Error XD">
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(11, 'sponsors')" onmouseout="shiftScaleDown(11, 'sponsors')" class="card" id="speaker-eleven">
-                                <div class="card-bg-img">
-                                    <img src="./media/sponsors/DOPOLOGY.png" alt="Error XD">
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(12, 'sponsors')" onmouseout="shiftScaleDown(12, 'sponsors')" class="last-card" id="speaker-ten">
-                                <div class="card-bg-img">
-                                    <img src="./media/sponsors/Anaganaga.png" alt="Error XD">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="right-arrow" id="right-arrow-spo">
-                            <div class="right-button">
-                                <span class="line" id="right-top"></span>
-                                <span class="line" id="right-bottom"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div> -->
-                <!-- SPONSORS SECTION END -->
-
-                <!-- 2019 ARCHIVE SECTION -->
-                <div class="section" id="archives">
-                    <div class="heading">
-                        <h3 class="heading-text">2019 - Illuminate Excellence</h3>
-                    </div>
-                    <div class="real-content">
-                        <div class="left-arrow" id="left-arrow-arc">
-                            <div class="left-button">
-                                <span class="line" id="left-top"></span>
-                                <span class="line" id="left-bottom"></span>
-                            </div>
-                        </div>
-                        <div class="cards" id="card-archive">
-                            <div onmouseover="shiftScaleUp(1, 'archive')" onmouseout="shiftScaleDown(1, 'archive')" class="first-card" id="speaker-one">
-                                <div class="card-bg-img">
-                                    <img src="https://img.youtube.com/vi/le6eNngljto/hqdefault.jpg" alt="Error XD">
-                                </div>
-                                <div class="card-details">
-                                    <div class="card-title">
-                                        <h2>Ayush Mehra</h2>
-                                        <h4>Enjoy the Journey</h4>
-                                    </div>
-                                    <div class="card-arrow" onclick="generate(1, 'archives')">
-                                        <h2>▶️</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div onmouseover="shiftScaleUp(2, 'archive')" onmouseout="shiftScaleDown(2, 'archive')" class="card" id="speaker-six">
-                                <div class="card-bg-img">
-                                    <img src="https://img.youtube.com/vi/lGJoaVHYifU/hqdefault.jpg" alt="Error XD">
-                                </div>
-                                <div class="card-details">
-                                    <div class="card-title">
-                                        <h2>Kaam Bhari</h2>
-                                        <h4>Living Life One Verse at a Time</h4>
-                                    </div>
-                                    <div class="card-arrow" onclick="generate(2, 'archives')">
-                                        <h2>▶️</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(3, 'archive')" onmouseout="shiftScaleDown(3, 'archive')" class="card" id="speaker-eight">
-                                <div class="card-bg-img">
-                                    <img src="https://img.youtube.com/vi/aWCDFi2tZiY/hqdefault.jpg" alt="Error XD">
-                                </div>
-                                <div class="card-details">
-                                    <div class="card-title">
-                                        <h2>Sumeet Vyas</h2>
-                                        <h4>Find Your Fuel</h4>
-                                    </div>
-                                    <div class="card-arrow" onclick="generate(3, 'archives')">
-                                        <h2>▶️</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(4, 'archive')" onmouseout="shiftScaleDown(4, 'archive')" class="card" id="speaker-two">
-                                <div class="card-bg-img">
-                                    <img src="https://img.youtube.com/vi/zX-6UFQuiXk/hqdefault.jpg" alt="Error XD">
-                                </div>
-                                <div class="card-details">
-                                    <div class="card-title">
-                                        <h2>Eisha Chopra</h2>
-                                        <h4>The Power of an Audience to Change Society</h4>
-                                    </div>
-                                    <div class="card-arrow" onclick="generate(4, 'archives')">
-                                        <h2>▶️</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(5, 'archive')" onmouseout="shiftScaleDown(5, 'archive')" class="card" id="speaker-three">
-                                <div class="card-bg-img">
-                                    <img src="https://img.youtube.com/vi/eEknyfpLdLI/hqdefault.jpg" alt="Error XD">
-                                </div>
-                                <div class="card-details">
-                                    <div class="card-title">
-                                        <h2>Kavish Sinha</h2>
-                                        <h4>Passion, What?</h4>
-                                    </div>
-                                    <div class="card-arrow" onclick="generate(5, 'archives')">
-                                        <h2>▶️</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(6, 'archive')" onmouseout="shiftScaleDown(6, 'archive')" class="card" id="speaker-four">
-                                <div class="card-bg-img">
-                                    <img src="https://img.youtube.com/vi/xrXHYaUUNGU/hqdefault.jpg" alt="Error XD">
-                                </div>
-                                <div class="card-details">
-                                    <div class="card-title">
-                                        <h2>Ameya Kanawade</h2>
-                                        <h4>Fumbling My Way to Fluency, How I got over My Stutter</h4>
-                                    </div>
-                                    <div class="card-arrow" onclick="generate(6, 'archives')">
-                                        <h2>▶️</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(7, 'archive')" onmouseout="shiftScaleDown(7, 'archive')" class="card" id="speaker-seven">
-                                <div class="card-bg-img">
-                                    <img src="https://img.youtube.com/vi/f8ppJS210RA/hqdefault.jpg" alt="Error XD">
-                                </div>
-                                <div class="card-details">
-                                    <div class="card-title">
-                                        <h2>Aakshaye Rathi</h2>
-                                        <h4>The Impact of OTT Platforms on Cinema</h4>
-                                    </div>
-                                    <div class="card-arrow" onclick="generate(7, 'archives')">
-                                        <h2>▶️</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(8, 'archive')" onmouseout="shiftScaleDown(8, 'archive')" class="last-card" id="speaker-five">
-                                <div class="card-bg-img">
-                                    <img src="https://img.youtube.com/vi/wwZKOmoNxMo/hqdefault.jpg" alt="Error XD">
-                                </div>
-                                <div class="card-details">
-                                    <div class="card-title">
-                                        <h2>Ali Mustafa Shaikh</h2>
-                                        <h4>Crowd-sourcing Data for Machine Learning</h4>
-                                    </div>
-                                    <div class="card-arrow" onclick="generate(8, 'archives')">
-                                        <h2>▶️</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="right-arrow" id="right-arrow-arc">
-                            <div class="right-button">
-                                <span class="line" id="right-top"></span>
-                                <span class="line" id="right-bottom"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="archive-info" id="archives-info">
-                        <div class="archive-video">
-                            <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-                <!-- ARCHIVE SECTION END -->
-
-                <!-- 2018 ARCHIVE SECTION -->
-                <div class="section" id="archives_2018">
-                    <div class="heading">
-                        <h3 class="heading-text">2018 - Rebuild Creativity</h3>
-                    </div>
-                    <div class="real-content">
-                        <div class="left-arrow" id="left-arrow-arc">
-                            <div class="left-button">
-                                <span class="line" id="left-top"></span>
-                                <span class="line" id="left-bottom"></span>
-                            </div>
-                        </div>
-                        <div class="cards" id="card-archive">
-                            <div onmouseover="shiftScaleUp(1, 'archive_2018')" onmouseout="shiftScaleDown(1, 'archive_2018')" class="first-card" id="speaker-one">
-                                <div class="card-bg-img">
-                                    <img src="https://img.youtube.com/vi/xjfVrWyU5oM/hqdefault.jpg" alt="Error XD">
-                                </div>
-                                <div class="card-details">
-                                    <div class="card-title">
-                                        <h2>Vikas Gupta</h2>
-                                        <h4>Finding Yourself</h4>
-                                    </div>
-                                    <div class="card-arrow" onclick="generate(1, 'archives_2018')">
-                                        <h2>▶️</h2>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div onmouseover="shiftScaleUp(2, 'archive_2018')" onmouseout="shiftScaleDown(2, 'archive_2018')" class="card" id="speaker-six">
-                                <div class="card-bg-img">
-                                    <img src="https://img.youtube.com/vi/-eXikXK9SZ8/hqdefault.jpg" alt="Error XD">
-                                </div>
-                                <div class="card-details">
-                                    <div class="card-title">
-                                        <h2>Manish Advani</h2>
-                                        <h4>The Art of Story Telling</h4>
-                                    </div>
-                                    <div class="card-arrow" onclick="generate(2, 'archives_2018')">
-                                        <h2>▶️</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(3, 'archive_2018')" onmouseout="shiftScaleDown(3, 'archive_2018')" class="card" id="speaker-eight">
-                                <div class="card-bg-img">
-                                    <img src="https://img.youtube.com/vi/6YVMYI2qMFI/hqdefault.jpg" alt="Error XD">
-                                </div>
-                                <div class="card-details">
-                                    <div class="card-title">
-                                        <h2>Nidhika Bahl</h2>
-                                        <h4>The Art of Creating Meaningful and Everlasting Relationships</h4>
-                                    </div>
-                                    <div class="card-arrow" onclick="generate(3, 'archives_2018')">
-                                        <h2>▶️</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(4, 'archive_2018')" onmouseout="shiftScaleDown(4, 'archive_2018')" class="card" id="speaker-two">
-                                <div class="card-bg-img">
-                                    <img src="https://img.youtube.com/vi/3GLsR29QHAU/hqdefault.jpg" alt="Error XD">
-                                </div>
-                                <div class="card-details">
-                                    <div class="card-title">
-                                        <h2>Rashi Mal</h2>
-                                        <h4>Choose the Life You Want to Live</h4>
-                                    </div>
-                                    <div class="card-arrow" onclick="generate(4, 'archives_2018')">
-                                        <h2>▶️</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(5, 'archive_2018')" onmouseout="shiftScaleDown(5, 'archive_2018')" class="card" id="speaker-three">
-                                <div class="card-bg-img">
-                                    <img src="https://img.youtube.com/vi/5FP0oqRUfHY/hqdefault.jpg" alt="Error XD">
-                                </div>
-                                <div class="card-details">
-                                    <div class="card-title">
-                                        <h2>Swapan Rajdev</h2>
-                                        <h4>The Age of Artificial Intelligence</h4>
-                                    </div>
-                                    <div class="card-arrow" onclick="generate(5, 'archives_2018')">
-                                        <h2>▶️</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(6, 'archive_2018')" onmouseout="shiftScaleDown(6, 'archive_2018')" class="card" id="speaker-four">
-                                <div class="card-bg-img">
-                                    <img src="https://img.youtube.com/vi/7gT5gO107nE/hqdefault.jpg" alt="Error XD">
-                                </div>
-                                <div class="card-details">
-                                    <div class="card-title">
-                                        <h2>Mohsin Memon</h2>
-                                        <h4>Games can solve real problems</h4>
-                                    </div>
-                                    <div class="card-arrow" onclick="generate(6, 'archives_2018')">
-                                        <h2>▶️</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(7, 'archive_2018')" onmouseout="shiftScaleDown(7, 'archive_2018')" class="card" id="speaker-seven">
-                                <div class="card-bg-img">
-                                    <img src="https://img.youtube.com/vi/f5kLOBzF34g/hqdefault.jpg" alt="Error XD">
-                                </div>
-                                <div class="card-details">
-                                    <div class="card-title">
-                                        <h2>Max Fernandes</h2>
-                                        <h4>Exploring the School of Art</h4>
-                                    </div>
-                                    <div class="card-arrow" onclick="generate(7, 'archives_2018')">
-                                        <h2>▶️</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div onmouseover="shiftScaleUp(8, 'archive_2018')" onmouseout="shiftScaleDown(8, 'archive_2018')" class="last-card" id="speaker-five">
-                                <div class="card-bg-img">
-                                    <img src="https://img.youtube.com/vi/qQ836w2kWf8/hqdefault.jpg" alt="Error XD">
-                                </div>
-                                <div class="card-details">
-                                    <div class="card-title">
-                                        <h2>Robin Chaurasia</h2>
-                                        <h4>Social Change/h4>
-                                    </div>
-                                    <div class="card-arrow" onclick="generate(8, 'archives_2018')">
-                                        <h2>▶️</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="right-arrow" id="right-arrow-arc">
-                            <div class="right-button">
-                                <span class="line" id="right-top"></span>
-                                <span class="line" id="right-bottom"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="archive-info" id="archives-info-2018">
-                        <div class="archive-video">
-                            <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-                <!-- END 2018 ARCHIVE SECTION -->
-
             </div>
         </div>
 
         <!-- About Us SECTION START -->
         <section>
-            <section class="stacking-slide" style="background-image: url(./media/background.png); height: 90vh; position: sticky; top: 0;">
+            <section class="stacking-slide" style="background-image: url(./media/background.png); height: 100vh; position: sticky; top: 0;">
                 <div class="heading">
                     <h3 class="heading-text">About Us</h3>
                 </div>
@@ -1153,9 +1367,8 @@
                         <p class="theme-expl" style="width:90%; height:70%;padding:20px;padding-top:0px;margin-right:35px;color:white;">
                             We the students of Sardar Patel Institute of Technology, since 1995 have sought to 
                             bring knowledge to the most easily reachable sector of the surface for others. 
-                            This year we have been honoured with a TEDx license which entitles us to host a TED 
-                            talk where several influential and charismatic personalities will share their 
-                            experience and showcase their knowledge.
+                            Through our TEDx license we host TED-style talks where several influential and 
+                            charismatic personalities share their experience and showcase their knowledge.
                         </p>
                       </div>
                     </div>
@@ -1209,60 +1422,20 @@
         <!-- About Us SECTION END -->
 
         <div class="parallax">
-            <!-- Contact Us Section START -->
+            <!-- Venue Section START -->
             <section class="contact">
                 <div class="contact-container">
                     <!-- Venue -->
                     <div class="venue">
-                        <h3 class="venue-heading">Venue</h3>
+                        <h3 class="venue-heading">Venue - TEDxSPIT 2020</h3>
                         <h5 class="venue-campus">S.P.J.I.M.R Auditorium</h5>
                         <h5 class="venue-address">Bhavans Campus,Old DN Nagar,Munshi Nagar,<br> Andheri W, Mumbai 400058</h5>
-                        <div class="section-title-header text-center">
-                            <h1 class="section-title">Drop A Message</h1>
-                        </div>
                     </div>
 
 
-                    <!-- Contact Us Form -->
-                    <div class="container-form">
-                        <div class="form-wrapper">
-                            <form role="form" class="contactForm" name="contact-form" data-toggle="validator" action="https://formspree.io/TEDxSPIT@gmail.com" method="POST">
-                                <div class="form-content">
-
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="name" name="Name" placeholder="First Name" required data-error="Please enter your name">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required data-error="Please enter your Email">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <input type="tel" class="form-control" id="msg_subject" name="subject" placeholder="Subject" required data-error="Please enter your message subject">
-                                        <div class="help-block with-errors"></div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <textarea class="form-control" rows="4" id="message" name="message" required data-error="Write your message"></textarea>
-                                    </div>
-                                    <div class="form-submit">
-                                        <button type="submit" class="btn" id="form-submit">
-                                         <span><i class="fa fa-paper-plane" aria-hidden="true"></i> Send Us Now </span>
-                                        </button>
-                                        <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </section>
-            <!-- Contact Us Section END -->
+            <!-- Venue Section END -->
         </div>
 
         <!-- Footer Section Start -->
@@ -1301,37 +1474,7 @@
         <!-- Cpoyrights Section End -->
     </div>
 
-    <script src="./scripts/js/index.js"></script>
-    <script>
-        // Set the date we're counting down to
-        var countDownDate = new Date("Nov 6, 2020 07:00:00").getTime();
-
-        // Update the count down every 1 second
-        var x = setInterval(function() {
-
-            // Get today's date and time
-            var now = new Date().getTime();
-
-            // Find the distance between now and the count down date
-            var distance = countDownDate - now;
-
-            // Time calculations for days, hours, minutes and seconds
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Output the result in an element with id="demo"
-            document.getElementById("demo").innerHTML = days + " Days " + hours + " hrs " +
-                minutes + " min " + seconds + " sec ";;
-
-            // If the count down is over, write some text 
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("demo").innerHTML = "6th Nov 2020";
-            }
-        }, 1000);
-    </script>
+    <script src="./scripts/js/index.js?v=14"></script>
 
 </body>
 

@@ -1,56 +1,243 @@
 // window.location.reload("www.tedxbitshyderabad.com");
 
 //  LANDING PART STARTS
-var eventDate = new Date(2020, 10, 06);
-var today = new Date();
-var remainingDays = Math.ceil((eventDate - today) / (1000 * 60 * 60 * 24));
-if (remainingDays == 1) {
-    $(".landing-countdown").text(remainingDays + " Day To Go!")
-} else if (remainingDays < 0) {
-    $(".landing-countdown").text("6th November 2020")
-} else {
-    $(".landing-countdown").text(remainingDays + " Days To Go!")
-}
-
-// document.getElementsByClassName("landing-countdown")[0].innerText = remainingDays + " Days To Go!";
-
-// console.log(remainingDays);
-
 var factor = 0;
 
-$(".landing-next-btn-link").click(e => {
-    console.log("Helo");
-    $("body").css("overflow-y", "scroll");
-    $(".landing-next-btn").css("display", "none");
-    $(".days-remaining").css({
-        "animation-delay": "0s",
-        "animation": "fadeOutContent ease 3s"
+/* Landing -> archive handover.
+   One class toggle drives the whole sequence; the CSS owns the timing so a
+   reduced-motion viewer gets the same handover with none of the movement. */
+(function () {
+    var landing = document.getElementById("landing");
+    var btn = document.getElementById("enter-btn");
+    var container = document.querySelector(".container");
+    if (!landing || !btn) return;
+
+    var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var left = false;
+
+    function enterArchive() {
+        if (left) return;
+        left = true;
+
+        landing.classList.add("is-leaving");
+        document.body.style.overflowY = "scroll";
+
+        if (container) {
+            container.classList.add("is-arriving");
+
+            // The class carries a transform, which makes .container the
+            // containing block for every position:fixed descendant -- the
+            // navbar and all the video modals. If it ever stuck, those would
+            // silently break, so drop it on a timer as well as on animationend.
+            var settle = function () { container.classList.remove("is-arriving"); };
+            container.addEventListener("animationend", settle, { once: true });
+            window.setTimeout(settle, 1000);
+        }
+
+        window.setTimeout(function () {
+            landing.classList.add("is-gone");
+        }, reduced ? 20 : 1120);
+    }
+
+    btn.addEventListener("click", enterArchive);
+
+    window.addEventListener("keydown", function (e) {
+        if (left) return;
+        if (e.key === "ArrowDown" || e.key === "PageDown") enterArchive();
     });
-    $(".landing-content").css({
-        "animation-delay": "0.5s",
-        "animation": "fadeOutContent ease 3s"
-    });
-    $(".layer-three").css({
-        "animation-delay": "1s",
-        "animation": "moveDown ease 3s"
-    });
-    $(".layer-two").css({
-        "animation-delay": "1.5s",
-        "animation": "moveDown ease 3s"
-    });
-    $(".building").css({
-        "animation-delay": "2s",
-        "animation": "moveDown ease 3s"
-    });
-    $(".landing-container").css({
-        "animation": "hide ease 3s",
-        "animation-iteration-count": "1",
-        "animation-fill-mode": "forwards",
-        "animation-delay": "2.5s",
-    });
-});
+
+    window.addEventListener("wheel", function (e) {
+        if (!left && e.deltaY > 12) enterArchive();
+    }, { passive: true });
+
+    var touchY = null;
+    window.addEventListener("touchstart", function (e) {
+        touchY = e.touches[0].clientY;
+    }, { passive: true });
+    window.addEventListener("touchmove", function (e) {
+        if (left || touchY === null) return;
+        if (touchY - e.touches[0].clientY > 40) enterArchive();
+    }, { passive: true });
+})();
+
 // LANDING PART ENDS
 
+
+/* Card lists stack into a long column on narrow screens, so each one shows
+   three and keeps the rest behind a button. Desktop ignores this entirely --
+   the CSS only reveals the control below 1024px. */
+(function () {
+    document.querySelectorAll(".view-more").forEach(function (btn) {
+        var cards = document.getElementById(btn.dataset.cards);
+        if (!cards) return;
+
+        if (cards.childElementCount <= 3) {
+            btn.style.display = "none";
+            return;
+        }
+
+        var label = btn.querySelector(".view-more-label");
+        var collapsed = btn.dataset.label;
+
+        btn.addEventListener("click", function () {
+            var open = cards.classList.toggle("cards-expanded");
+            btn.classList.toggle("is-open", open);
+            btn.setAttribute("aria-expanded", String(open));
+            label.textContent = open ? "Show fewer" : collapsed;
+
+            if (!open) {
+                var top = cards.getBoundingClientRect().top + window.scrollY - 80;
+                window.scrollTo({ top: top, behavior: "smooth" });
+            }
+        });
+    });
+})();
+
+/* Every talk archive: play the video, show the speaker's bio, close again.
+   One handler for all four sections. Each card carries its own data-video, so
+   this does not depend on the global generate(), whose active copy has the
+   "show the modal" line commented out -- which is why the 2019 and 2018
+   videos never opened. Bios come from the TEDx event manager export. */
+(function () {
+    var BIOS = {
+        "Vikas Gupta": "Vikas Gupta, the second runner-up for Bigboss season 11, has gained quite the status as a T.V personality being a producer and creator. This reputation complemented by his past roles as Creative head for Ekta Kapoor's Balaji Television comprising of several top-grossing shows like Kyuki Saas Bhi Kabhi Bahu Thi. He is the pioneer of “The Lost Boy Productions” which is involved in the creation of famous shows like Kiasi Yeh Yaariya, Gumah, Yeh Hai Aashiqui and a lot more. He later headed the TV channel &TV. In addition to this, he went on to become the youngest person to head MTV in the world along with winning the “TV Personality of the year” at the Lions Gold Awards.",
+        "Manish Advani": "A story teller, a song writer, recognised for positioning brands in the industry through CSR and Green initiatives. Heads Marketing and Public Relations for MSSG. Bears a work experience of over 2 decades on client engagements from organizations like Microsoft, Hindustan Unilever, Jaguar and Land Rover, etc. in various roles. An honourable recipient of Microsoft President Award and various others. A gold medalist from New Jersey Institute of Technology with Summa Cum Laude. Manish has completed brand building program from Stanford and One year program from Harvard.",
+        "Nidhika Bahl": "Nidhika holds the distinction of being the ALL Ladies League Maharashtra Chairperson for Coaching and of being the official Life Coach of Miss Diva Universe 2017 finalists, coaching the likes of Miss World 2017 Manushri Chillar. Considered to be one of the most inspiring entrepreneurs of our time, having features in newspapers such as The Economic Times and Mumbai Mirror.",
+        "Rashi Mal": "Rashi is a professionally trained actress, dancer and singer/songwriter. She started her acting career on stage and has studied method acting at the Jeff Goldberg Studio. She is currently shooting her first Hindi feature film and has also worked on an Indo French film which will release shortly. She has starred in several popular web series including 'Boygiri', 'A.I.S.H.A My Virtual Girlfriend', 'Time Out' and the mini-series 'Paanch' on Channel V. She's also making a name for herself in the music industry. She sang the song 'Buri Buri' for the film Dear Maya starring Manisha Koirala and also wrote the rap for it. She's a professionally trained dancer too and was a company member of choreographer Ashley Lobo's dance company, The Danceworx. All in all she is the textbook definition of a true artist.",
+        "Swapan Rajdev": "Swapan Rajdev is the Chief Technology Officer & Co-founder at Haptik, one of the world's largest chatbot platforms. He oversees the entire engineering function at Haptik which includes product development, scalability, and future vision from a technology and product perspective. Apart from this, Swapan's focus is on the culture at Haptik. He is consistently working on new and innovative ways to make it one of the best places to work at.",
+        "Mohsin Memon": "Mohsin Memon is the founder and CEO of MEM corp immersive learning. Mohsin is a gamer and a game designer who has been playing and designing games all his life. He believes games have the ability to do more for humanity than we can imagine. He has worked closely with leaders of companies like Motorola, Wal-Mart, Delta Airlines, GroupM and many others to embed learning as a part of the organization's culture.",
+        "Max Fernandes": "Max Fernandes possess a knack for adapting to any role humanly possible which is highlighted by his past where he has played over 15 roles in eight organizations after which he finally found his adobe in theatre. One of his recent plays is “Ruby Moon” by The Peas and Carrots Theatre Company. He has also been a crucial TV actor for Sony, OML, Star and so on. With an objective of promotion of Theatre arts, he conducts theatre workshops at St. Xavier's Institute of Communication and St Paul's Institute as well. He's been an essential part of several schools for the same. Despite the enormous amount of praise, he has the definition of “Humble” engraved in his soul.",
+        "Robin Chaurasia": "Robin helped organize a successful campaign to change US armed forces policy after being forced to leave her position as an Air Force officer because of her sexuality. The experience inspired her to go into teaching and to found an NGO in India called Kranti. Robin has formalized a social justice curriculum at Kranti covering key issues that affect the girls' lives which they use to design and implement projects. In 2013, they convinced an MP to help them register sex workers to vote. They have led workshops for more than 100,000 people and delivered 11 TEDx talks around the world. They toured a play they wrote about the experiences across the USA, performing at the headquarters of Facebook and Google.",
+        "Ayush Mehra": "Ayush Mehra is nothing short of a superhero! He's a strong believer of the fact that hard work and perseverance yields the best and the most powerful fruits. Speaking of food, Ayush can eat 2 pizzas at one stretch (another superhero power) and he loves to watch football. He's very diligently worked hard as an assistant director for 4 movies, the recent one being URI: The Surgical Strike. Alongside all this, he's acted in several commercials and sketches of channels like Filter Copy, Arré and more. Not to forget his contributions as the lead role in the recent, Times web series MomCo and his new web show, Minus One, which is soon to release! He is known for possessing a jovial personality and a friendly nature. There's a lot more to him and it's equally exciting!",
+        "Kaam Bhari": "Kaam Bhaari, a young emcee with a knack for taking people's breath away with his rap, has translated his success with a lot of hard work. He was intrigued by hip hop at a very young age and was discovered by Superstars like Ranveer Singh. Kaam Bhaari was also one of the final four rappers to perform with Ranveer Singh as part of the famous brand Jack & Jones' competition. Having overcome all his childhood hardships, he managed to grab the limelight by making several T.V commercial jingles and get featured in the super hit movie, Gully Boy in which he also wrote and co-composed two amazing songs, “Kaam Bhaari” and “Kab Se Kab Tak”. He's a young Lyricist with infinite potential.",
+        "Sumeet Vyas": "Sumeet Vyas is a critically acclaimed Indian actor and writer of films, web series and theatre. His breakthrough role was Mikesh Chaudhary in TVF's 2014 web series Permanent Roommates. He has since been a part of various Bollywood films including the 2015 productions Parched and 2018's Veere Di Wedding. He has his first starring role in 2016 drama film Ribbon, his performance was well received by critics. His subsequent roles in Tripling and various plays proved him to be a versatile actor who isn't afraid to break the mould.",
+        "Eisha Chopra": "Eisha Chopra is a prominent film, web actor and screenwriter. The inception of her acting career was first marked with the blockbuster hit Neerja, and the critically acclaimed TV show Prisoners of War. Since then she has been the female lead for several web shows such as What The Folks, The Great Indian Dysfunctional Family and Official CEOgiri, opposite actors like Sumeet Vyas & Barun Sobti. She has also been the face of major advertising campaigns such as the recent Forever Mark Diamonds for DeBeers. She is also a popular Internet personality, and a role model for the independent Indian woman.",
+        "Kavish Sinha": "Kavish Sinha is a man that has seen it all. From working as a brand strategist for the best of today's ad agencies like Ogilvy, JWT and Grey Worldwide, to his foray into his present domain as a Casting Director in Bollywood. Just 3 years into the industry, he's now running his own successful Casting Company “On-My-Kayroll”. His litany of clients will make your head spin. He's successfully served the likes of Mani Ratnam, Sunny Deol, Nikhil Advani, Rohan Sippy and many other illustrious names. He loves his job and believes it's extremely important to put the right faces to the writer's words and director's vision.",
+        "Ameya Kanawade": "Ameya is at the rear end of the commonly despised GEM category but has a height taller than your sense of humour. He is usually found dodging train handles when he isn't fumbling with words. Poor man's 'Aditya Roy Kapoor' as he is known by the local guys, he is fond of maths and is currently into teaching. He will quickly calculate your share of the bill and will then run faster than a leggy lass in sneakers giving anyone a run for his money.",
+        "Aakshaye Rathi": "Mr. Akshaye Rathi is a man with diverse interests. He is a film exhibitor, distributor, columnist, teacher and start up incubator. Armed with an MBA from the S.P Jain Institute of Management & Research, he has always made the utmost efforts to achieve the greatest of goals. He's the trailblazer of consolidating the unorganised film exhibition sector in tier 2 & 3 towns of central India by orchestrating a strategic association for his cinemas with the Mexican chain Cinepolis.",
+        "Ali Mustafa Shaikh": "Mustafa Ali Shaikh is a 20 year old Artificial Intelligence expert who happens to be the point of contact for Google Crowdsource alongside being the president of Infikey.org. Mustafa is the proud holder of Google Crowdsource Community leader Award of 2018 and has been the co-organizer of Google Cloud Developers Community. Apart from being a professional with over 20 certifications from Google, he has been awarded 3 Digital badges from IBM for his excellence in several domains circling around A.I, Chatbots, Blockchain and more. His achievements and brilliance are massive and cannot be defined within the confines of mere words.",
+        "Angry Prash": "Angry Prash — the man, the myth, the legend. Angry Prash is popular for his iconic long white nose and circular bald head (we mean the helmet) and expresses himself through illustrations, skits, and music. With only MS Paint to his rescue, Angry Prash animated his ideas on the white page with a pen tool. Angry Prash is one of India's celebrated animation YouTube channels, with 6.3M subscribers and 1M followers on Instagram. He shares a zeal for comedy sketches and music, and his army is waiting for him to reveal his face — till then we binge on his content!",
+        "Sushant Pujari": "Sushant Pujari has been actively involved in Bollywood for 15 years. He worked with Remo D'Souza and has assisted him for over 10 years. He is an avid biker, loves dancing, a disciplined fitness freak, has a keen interest in gardening and is a Traveller by heart. He has worked as an actor in movies, his debut being ABCD directed by Remo D'Souza. He has also starred in music videos. He is the main lead of the musical 'Merchants of Bollywood' which showcases the history and richness of Bollywood culture all around the world. He is a loving family man and is happily married. He is also a kind and loving father to his daughter, Laasya.",
+        "Jhanvi Bhatia": "Jhanvi Bhatia is a fashion & beauty creator who's making personal styling a process to embrace our own body. She's spreading smiles & pushing insecurities away with one outfit a day through her videos!",
+        "Sai Godbole": "Sai took the TEDxSPIT stage to share her journey in the acting industry — an inspiring and uplifting talk that left the audience spellbound. She also offered valuable insights and practical advice on how to embark on a career path as an actor.",
+        "Tushar Mahajan": "Although being a photographer was never his plan, Tushar Mahajan has succeeded in making a name for himself through his work in this industry over the past five years. At present, he makes music videos for Euphoria and manages social media content and behind the scenes for one of the biggest YouTube channels in India - BB Ki Vines. When he is not working, he likes playing cricket and listening to music, ranging from rock and roll to Indian classical music.",
+        "Rudraksh Jaiswal": "Rudhraksh Jaiswal kickstarted his career in 2013 when he bagged the role of Sahadev in Mahabharata. Despite being a child actor, he has maintained a clean balance between his studies and his acting commitments. Widening his multi-faceted journey, Rudhraksh stepped into the world of films with Noor (2017). The latest addition to his long list of achievements is Extraction, where he had the chance of working alongside Chris Hemsworth and David Harbour. He is a jovial person, who's always ready to persevere and learn in order to shape ideas into reality.",
+        "Shams Alam": "Shams Alam is an Indian Para Swimmer, who holds the world record for the Longest Open Sea Swimming by paraplegic person. An engineer and an MBA by profession, he overcame all odds to be an international gold medalist para swimmer and was awarded the best emerging leader in disability sports & sports diplomacy by the U.S. Department of State Global Sports Mentoring Program in 2018. He has continued to inspire the youth by delivering multiple TEDx talks & motivational speeches over the years.",
+        "Anjali Barot": "An actor and social media sensation, Anjali Barot has made her presence felt across digital, print, television and OTT platforms. She wowed audiences with her work in Sony LIV's Scam 1992, directed by Hansal Mehta, and rose to prominence with her quirky and relatable roles in digital sketches across ScoopWhoop, FilterCopy and BuzzFeed. When she is not facing the camera, Anjali enjoys a kadak cup of chai and holidaying in the hills."
+    };
+
+    document.querySelectorAll(".section").forEach(function (section) {
+        var modal = section.querySelector(".archive-info");
+        var panel = modal && modal.querySelector(".archive-bio");
+        if (!panel) return;
+
+        var nameEl = panel.querySelector(".archive-bio-name");
+        var talkEl = panel.querySelector(".archive-bio-talk");
+        var textEl = panel.querySelector(".archive-bio-text");
+
+        var isSpeakers = section.id === "speakers";
+        var frame = modal.querySelector("iframe");
+        var videoBox = modal.querySelector(".archive-video");
+        var portrait = modal.querySelector(".archive-portrait");
+        var socialList = panel.querySelector(".archive-bio-social");
+        var cards = Array.prototype.slice.call(section.querySelectorAll(".cards > *"));
+        var last = cards.length - 1;
+
+        var ICONS = { lin: "fa-linkedin-in", insta: "fa-instagram", fb: "fa-facebook-f", tw: "fa-twitter" };
+
+        function socials(person) {
+            if (!socialList) return;
+            socialList.textContent = "";
+            Object.keys(ICONS).forEach(function (key) {
+                var href = person[key];
+                if (!href || href === "#") return;
+                var li = document.createElement("li");
+                var a = document.createElement("a");
+                a.href = href;
+                a.target = "_blank";
+                a.rel = "noopener";
+                a.innerHTML = '<i class="fab ' + ICONS[key] + '"></i>';
+                li.appendChild(a);
+                socialList.appendChild(li);
+            });
+        }
+
+        cards.forEach(function (card, i) {
+            var trigger = card.querySelector(".card-details");
+            var title = card.querySelector(".card-title");
+            if (!trigger || !title) return;
+
+            trigger.addEventListener("click", function () {
+                var name = ((title.querySelector("h2") || {}).textContent || "").trim();
+                var sub = ((title.querySelector("h4") || {}).textContent || "").trim();
+                var bio = BIOS[name];
+                var photo = "";
+
+                // the 2020 speakers carry richer data than the card shows
+                var person = isSpeakers && window.speakers_data ? window.speakers_data[i] : null;
+                if (person) {
+                    name = person.name || name;
+                    sub = [person.occupation, person.talk].filter(Boolean).join(" \u00b7 ");
+                    bio = person.write_up || bio;
+                    photo = person.picture || "";
+                    socials(person);
+                } else if (socialList) {
+                    socialList.textContent = "";
+                }
+
+                nameEl.textContent = name;
+                talkEl.textContent = sub;
+                textEl.textContent = bio || "";
+                panel.hidden = !(bio || name);
+
+                var video = card.dataset.video;
+                if (video) {
+                    frame.src = "https://www.youtube.com/embed/" + video + "?autoplay=1";
+                    if (videoBox) videoBox.hidden = false;
+                    if (portrait) portrait.hidden = true;
+                } else {
+                    // no talk recording -- fall back to the speaker's portrait
+                    frame.src = "about:blank";
+                    if (videoBox) videoBox.hidden = true;
+                    if (portrait) {
+                        portrait.src = photo;
+                        portrait.alt = name;
+                        portrait.hidden = !photo;
+                    }
+                }
+
+                modal.style.display = "block";
+                modal.scrollTop = 0;
+            });
+
+            // the older sections drive this from inline onmouseover; the two
+            // new ones need it wired up here
+            if (!card.getAttribute("onmouseover")) {
+                card.addEventListener("mouseover", function () { shift(i, true); });
+                card.addEventListener("mouseout", function () { shift(i, false); });
+            }
+        });
+
+        function shift(j, on) {
+            cards.forEach(function (card, i) {
+                var cls = null;
+                if (j === 0 && i > 0) cls = "shiftCardRight90";
+                else if (j === last && i < last) cls = "shiftCardLeft90";
+                else if (i < j) cls = "shiftCardLeft50";
+                else if (i > j) cls = "shiftCardRight50";
+                if (cls) card.classList[on ? "add" : "remove"](cls);
+            });
+        }
+
+        modal.addEventListener("click", function () {
+            modal.style.display = "none";
+            // the older sections still have a jQuery close handler that sets
+            // src = "", which resolves against the page and reloads the whole
+            // site into the hidden iframe; clear it after those have run
+            setTimeout(function () { frame.src = "about:blank"; }, 0);
+        });
+    });
+})();
 
 var speaker_info = document.getElementById("speakers-info");
 var executive_info = document.getElementById("executives-info");
@@ -175,7 +362,7 @@ window.onload = function() {
             "speaker": [{
                     "name": "Anjali Barot",
                     "occupation": "Actor",
-                    "talk_name": "Talk Name One",
+                    "talk_name": "Chhoti Aakhein, Bade Sapne",
                     "write_up": "An actor and social media sensation, Anjali Barot has made her presence felt across digital, print, television and OTT platforms. When she is not facing the camera, Anjali enjoys a kadak cup of chai and holidaying in the hills. A foodie by birth and someone with an infectious energy, Anjali always has a story or two to tell.",
                     "facebook": "",
                     "insta": "https://www.instagram.com/anjalibarotofficial/",
@@ -186,7 +373,7 @@ window.onload = function() {
                 {
                     "name": "Tushar Mahajan",
                     "occupation": "Photographer & DOP",
-                    "talk_name": "Talk Name Two",
+                    "talk_name": "One Frame at a Time",
                     "write_up": "Although being a photographer was never his plan, Tushar Mahajan has succeeded in making a name for himself through his work in this industry over the past five years. At present, he makes music videos for Euphoria and manages social media content and behind the scenes for one of the biggest YouTube channels in India - BB Ki Vines. When he is not working, he likes playing cricket and listening to music, ranging from rock and roll to Indian classical music.",
                     "facebook": "",
                     "insta": "https://www.instagram.com/tusharmahajanofficial/",
@@ -197,7 +384,7 @@ window.onload = function() {
                 {
                     "name": "Pratik Gandhi",
                     "occupation": "Actor",
-                    "talk_name": "Talk Name Two",
+                    "talk_name": "",
                     "write_up": "After the apt portrayal of Harshad Mehta in Sony Liv's Scam 1992, Pratik Gandhi has become a household name. His role has the entire country singing his praises. However, this shot to fame didn't happen overnight. After years of working as a mechanical engineer and taking up acting gigs on the side, Pratik eventually quit his job to pursue acting full time. How he went from a mechanical engineer to the man of the hour, is a journey you don't want to miss.",
                     "facebook": "",
                     "insta": "https://www.instagram.com/pratikgandhiofficial/",
@@ -208,7 +395,7 @@ window.onload = function() {
                 {
                     "name": "Rudhraksh Jaiswal",
                     "occupation": "Actor",
-                    "talk_name": "Talk Name Four",
+                    "talk_name": "Climbing up the Success Ladder",
                     "write_up": "Rudhraksh Jaiswal kickstarted his career in 2013 when he bagged the role of Sahadev in Mahabharata. Despite being a child actor, he has maintained a clean balance between his studies and his acting commitments. Widening his multi-faceted journey, Rudhraksh stepped into the world of films with Noor (2017). The latest addition to his long list of achievements is Extraction, where he had the chance of working alongside Chris Hemsworth and David Harbour. He is a jovial person, who's always ready to persevere and learn in order to shape ideas into reality.",
                     "facebook": "",
                     "insta": "https://www.instagram.com/rudhrakshjaiswal1/",
@@ -219,7 +406,7 @@ window.onload = function() {
                 {
                     "name": "Shams Alam",
                     "occupation": "Indian Para Swimmer",
-                    "talk_name": "Talk Name Three",
+                    "talk_name": "In Search of a Comprehensive Society",
                     "write_up": "Shams Alam is an Indian Para Swimmer, who holds the world record for the Longest Open Sea Swimming by paraplegic person. An engineer and an MBA by profession, he overcame all odds to be an international gold medalist para swimmer and was awarded the best emerging leader in disability sports & sports diplomacy by the U.S. Department of State Global Sports Mentoring Program in 2018. He has continued to inspire the youth by delivering multiple TEDx talks & motivational speeches over the years.",
                     "facebook": "",
                     "insta": "https://www.instagram.com/iamshamsaalam/",
@@ -230,7 +417,7 @@ window.onload = function() {
                 {
                     "name": "Dr. Dilip Pawar",
                     "occupation": "Covid-19 Task Force Doctor",
-                    "talk_name": "Talk Name Five",
+                    "talk_name": "",
                     "write_up": "Dr. Dilip Pawar is a Physician, International Cancer Research Specialist, and a COVID-19 expert. He holds the Guinness World Record for screening the largest number of cases of Breast Cancer by self-examination. Apart from having more than 175 Scientific Publications to his name, Dr. Pawar is a recipient of several awards for COVID-19 related research and a pioneer in the Steam Inhalation Therapy for COVID-19. He has also been selected as an Indian Army Doctor for COVID-19.",
                     "facebook": "",
                     "insta": "",
